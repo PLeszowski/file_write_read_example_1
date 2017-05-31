@@ -1,6 +1,8 @@
 package com.company;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * Created by RENT on 2017-05-31.
@@ -8,39 +10,19 @@ import java.io.*;
 public class MyReader {
 
 
-	private FileInputStream fis = null;
-	private BufferedReader br = null;
-
 	public MyReader() {
 
 	}
 
-	public void readFile (String fileName) {
+	public void readFile(String fileName) {
 
 		try {
-			fis = new FileInputStream(fileName);
-			br = new BufferedReader(new InputStreamReader(fis, "UTF-8"));
+			Files.lines(Paths.get(fileName))
+					.sorted()
+					.mapToInt(line -> Integer.parseInt(line))
+					.filter(i -> i > 3)
+					.forEach(line -> System.out.println(line));
 
-			String line = br.readLine();
-			int fileLines = Integer.parseInt(line);
-
-			for (int i = 0; i < fileLines; i++){
-				line = br.readLine();
-				System.out.println(line);
-			}
-
-
-
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		try {
-			br.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -20,8 +20,8 @@ public class MyWriter {
 			fos = new FileOutputStream(this.fileName);
 			bw = new BufferedWriter(new OutputStreamWriter(fos, "UTF-8"));
 
-			bw.write(Integer.toString(table.length * table[0].length));
-			bw.write("\n");
+			//bw.write(Integer.toString(table.length * table[0].length));
+			//bw.write("\n");
 
 			for (int i = 0; i < table.length; i++){
 				for(int j = 0; j < table[i].length; j++){
